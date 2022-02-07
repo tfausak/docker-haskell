@@ -3,6 +3,9 @@ jobs:
   docker:
     strategy:
       matrix:
+        ghc:
+          - 8.10.7
+          - 9.0.2
         platform:
           - linux/amd64
           - linux/arm64
@@ -18,6 +21,7 @@ jobs:
           username: ${{ github.actor }}
       - uses: docker/build-push-action@v2
         with:
+          build-args: GHC_VERSION=${{ matrix.ghc }}
           platforms: ${{ matrix.platform }}
           push: true
-          tags: ghcr.io/${{ github.repository }}:commit-${{ github.sha }}
+          tags: ghcr.io/${{ github.repository }}:ghc-${{ matrix.ghc }}
