@@ -1,17 +1,20 @@
-ARG UBUNTU_VERSION=20.04
+ARG UBUNTU_VERSION=21.10
 FROM ubuntu:"$UBUNTU_VERSION"
 
 ENV LANG=C.UTF-8
 RUN \
   apt-get update && \
-  apt-get install --assume-yes --no-install-recommends \
+  env DEBIAN_FRONTEND=noninteractive apt-get install --assume-yes --no-install-recommends \
     ca-certificates \
-    clang \
+    clang-12 \
     curl \
     libnuma1 \
-    llvm-dev \
+    llvm-12-dev \
     make \
     sudo && \
+  update-alternatives --install /usr/local/bin/clang clang "$( command -v clang-12 )" 100 && \
+  update-alternatives --install /usr/local/bin/llc llc "$( command -v llc-12 )" 100 && \
+  update-alternatives --install /usr/local/bin/opt opt "$( command -v opt-12 )" 100 && \
   rm --recursive /var/lib/apt/lists/*
 
 ARG USER_NAME=haskell
