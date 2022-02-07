@@ -6,6 +6,7 @@ jobs:
         ghc:
           - 8.10.7
           - 9.0.2
+          - 9.2.1
         platform:
           - linux/amd64
           - linux/arm64
@@ -24,4 +25,4 @@ jobs:
           build-args: GHC_VERSION=${{ matrix.ghc }}
           platforms: ${{ matrix.platform }}
           push: true
-          tags: ghcr.io/${{ github.repository }}:ghc-${{ matrix.ghc }}
+          tags: ghcr.io/${{ github.repository }}:${{ matrix.ghc }}
