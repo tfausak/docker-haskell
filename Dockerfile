@@ -104,7 +104,7 @@ WORKDIR "/home/$USER_NAME"
 ENV PATH="/home/$USER_NAME/.cabal/bin:/home/$USER_NAME/.ghcup/bin:$PATH"
 
 RUN mkdir --parents ~/.cabal/store ~/.ghcup/bin
-VOLUME "/home/$USER_NAME/.cabal/store"
+VOLUME "/home/$USER_NAME/.cabal" "/home/$USER_NAME/.cabal/store"
 
 # Install ghcup.
 ARG GHCUP_VERSION=0.1.17.4
