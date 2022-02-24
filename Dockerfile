@@ -103,12 +103,10 @@ USER "$USER_NAME"
 WORKDIR "/home/$USER_NAME"
 ENV PATH="/home/$USER_NAME/.cabal/bin:/home/$USER_NAME/.ghcup/bin:$PATH"
 
-RUN mkdir --parents ~/.cabal/store ~/.ghcup/bin
-VOLUME "/home/$USER_NAME/.cabal" "/home/$USER_NAME/.cabal/store"
-
 # Install ghcup.
 ARG GHCUP_VERSION=0.1.17.4
 RUN \
+  mkdir --parents ~/.ghcup/bin && \
   curl --output ~/.ghcup/bin/ghcup "https://downloads.haskell.org/~ghcup/$GHCUP_VERSION/$( uname -m )-linux-ghcup-$GHCUP_VERSION" && \
   chmod +x ~/.ghcup/bin/ghcup && \
   ghcup --version
