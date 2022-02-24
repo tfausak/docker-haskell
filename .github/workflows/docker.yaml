@@ -16,10 +16,8 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: ghcr.io/${{ github.repository }}
-          flavor: |
-            latest=false
-            prefix=${{ matrix.ghc }}-
-          tags: type=sha,format=long,prefix=
+          flavor: latest=false
+          tags: type=sha,format=long,prefix=${{ matrix.ghc }}-
       - uses: docker/login-action@v1
         with:
           password: ${{ secrets.GITHUB_TOKEN }}
