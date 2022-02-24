@@ -9,7 +9,7 @@ RUN \
     ca-certificates \
     "clang-$CLANG_VERSION" \
     curl \
-    libnuma1 \
+    libnuma-dev \
     "llvm-$CLANG_VERSION-dev" \
     make \
     sudo && \
