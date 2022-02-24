@@ -22,4 +22,4 @@ jobs:
           build-args: GHC_VERSION=${{ matrix.ghc }}
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ghcr.io/${{ github.repository }}:${{ matrix.ghc }}
+          tags: ghcr.io/${{ github.repository }}:${{ matrix.ghc }}-${{ github.sha }}
