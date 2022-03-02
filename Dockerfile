@@ -32,7 +32,7 @@ RUN mkdir --parents ~/.cabal/store ~/.ghcup/bin
 VOLUME "/home/$USER_NAME/.cabal" "/home/$USER_NAME/.cabal/store"
 
 # Install ghcup.
-ARG GHCUP_VERSION=0.1.17.4
+ARG GHCUP_VERSION=0.1.17.5
 RUN \
   curl --output ~/.ghcup/bin/ghcup "https://downloads.haskell.org/~ghcup/$GHCUP_VERSION/$( uname -m )-linux-ghcup-$GHCUP_VERSION" && \
   chmod +x ~/.ghcup/bin/ghcup && \
