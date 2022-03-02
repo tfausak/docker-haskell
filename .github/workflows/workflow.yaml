@@ -3,11 +3,13 @@ on: push
 jobs:
   hadolint:
     runs-on: ubuntu-latest
+    name: Hadolint
     steps:
       - uses: actions/checkout@v2
       - uses: hadolint/hadolint-action@v1.6.0
   shellcheck:
     runs-on: ubuntu-latest
+    name: ShellCheck
     steps:
       - uses: actions/checkout@v2
       - uses: ludeeus/action-shellcheck@1.1.0
