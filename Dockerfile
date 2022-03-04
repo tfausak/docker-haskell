@@ -9,6 +9,7 @@ RUN \
     ca-certificates \
     "clang-$CLANG_VERSION" \
     curl \
+    libgmp-dev \
     libnuma-dev \
     "llvm-$CLANG_VERSION-dev" \
     make \
