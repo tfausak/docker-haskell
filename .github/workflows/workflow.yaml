@@ -19,7 +19,7 @@ jobs:
         ghc:
           - 8.10.7
           - 9.0.2
-          - 9.2.1
+          - 9.2.2
     runs-on: ubuntu-latest
     name: Docker with GHC ${{ matrix.ghc }}
     steps:
