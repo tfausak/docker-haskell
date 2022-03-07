@@ -24,7 +24,7 @@ RUN \
 ARG CABAL_STORE=/cabal-store
 RUN \
   mkdir "$CABAL_STORE" && \
-  chown g+w "$CABAL_STORE" && \
+  chmod g+w "$CABAL_STORE" && \
   chgrp sudo "$CABAL_STORE"
 VOLUME "$CABAL_STORE"
 
