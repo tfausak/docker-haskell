@@ -56,7 +56,8 @@ RUN \
 ARG CABAL_VERSION=3.6.2.0
 RUN \
   ghcup install cabal "$CABAL_VERSION" --set && \
-  cabal --version
+  cabal --version && \
+  cabal user-config init --augment "store-dir: $CABAL_STORE"
 
 # Install HLS.
 ARG HLS_VERSION=1.6.1.0
