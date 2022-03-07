@@ -21,16 +21,23 @@ RUN \
   /tmp/update-alternatives.sh "$CLANG_VERSION" && \
   rm /tmp/update-alternatives.sh
 
+ARG CABAL_STORE=/cabal-store
+RUN \
+  mkdir "$CABAL_STORE" && \
+  chmod g+w "$CABAL_STORE" && \
+  chgrp sudo "$CABAL_STORE"
+VOLUME "$CABAL_STORE"
+
 ARG USER_NAME=haskell
 RUN \
-  useradd --create-home --shell "$( command -v bash )" "$USER_NAME" && \
+  useradd --create-home --groups sudo --shell "$( command -v bash )" "$USER_NAME" && \
   echo "$USER_NAME ALL=(ALL) NOPASSWD: ALL" > "/etc/sudoers.d/$USER_NAME"
 USER "$USER_NAME"
 WORKDIR "/home/$USER_NAME"
 ENV PATH="/home/$USER_NAME/.cabal/bin:/home/$USER_NAME/.ghcup/bin:$PATH"
 
-RUN mkdir --parents ~/.cabal/store ~/.ghcup/bin
-VOLUME "/home/$USER_NAME/.cabal" "/home/$USER_NAME/.cabal/store"
+RUN mkdir --parents ~/.ghcup/bin
+VOLUME "/home/$USER_NAME/.cabal/store"
 
 # Install ghcup.
 ARG GHCUP_VERSION=0.1.17.5
@@ -49,7 +56,8 @@ RUN \
 ARG CABAL_VERSION=3.6.2.0
 RUN \
   ghcup install cabal "$CABAL_VERSION" --set && \
-  cabal --version
+  cabal --version && \
+  cabal user-config init --augment "store-dir: $CABAL_STORE"
 
 # Install HLS.
 ARG HLS_VERSION=1.6.1.0
