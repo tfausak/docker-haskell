@@ -13,6 +13,7 @@ env DEBIAN_FRONTEND=noninteractive apt-get install --assume-yes --no-install-rec
   "llvm-$CLANG_VERSION-dev" \
   make \
   nano \
+  netbase \
   openssh-client \
   sudo \
   zlib1g-dev
