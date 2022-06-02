@@ -9,6 +9,7 @@ env DEBIAN_FRONTEND=noninteractive apt-get install --assume-yes --no-install-rec
   git \
   less \
   libgmp-dev \
+  liblzma-dev \
   libnuma-dev \
   "llvm-$CLANG_VERSION-dev" \
   make \
