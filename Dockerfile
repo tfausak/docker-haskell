@@ -41,5 +41,6 @@ VOLUME "/home/$USER_NAME/.stack"
 ARG HLS_VERSION=1.7.0.0
 COPY run/install-hls.sh /tmp
 RUN /tmp/install-hls.sh
+VOLUME "/home/$USER_NAME/.cache"
 
 CMD [ "ghci" ]
