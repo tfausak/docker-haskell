@@ -27,9 +27,11 @@ COPY run/install-ghc.sh /tmp
 RUN /tmp/install-ghc.sh
 
 ARG CABAL_VERSION=3.6.2.0
+ARG CABAL_STORE=/cabal-store
 COPY run/install-cabal.sh /tmp
 RUN /tmp/install-cabal.sh
 VOLUME "/home/$USER_NAME/.cabal"
+VOLUME "$CABAL_STORE"
 
 ARG STACK_VERSION=2.7.5
 COPY run/install-stack.sh /tmp
