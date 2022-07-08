@@ -14,8 +14,8 @@ ARG USER_NAME=haskell
 COPY run/create-user.sh /tmp
 RUN /tmp/create-user.sh
 
-WORKDIR "/home/$USER_NAME"
 USER "$USER_NAME"
+WORKDIR "/home/$USER_NAME"
 ENV PATH="/home/$USER_NAME/.local/bin:/home/$USER_NAME/.cabal/bin:/home/$USER_NAME/.ghcup/bin:$PATH"
 
 ARG GHCUP_VERSION=0.1.17.8
