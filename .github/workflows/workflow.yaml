@@ -39,7 +39,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
           username: ${{ github.actor }}
-      - uses: docker/build-push-action@v3
+      - uses: docker/build-push-action@v6
         with:
           build-args: GHC_VERSION=${{ matrix.ghc }}
           labels: ${{ steps.meta.outputs.labels }}
