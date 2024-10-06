@@ -37,7 +37,9 @@ ENV GHCUP_USE_XDG_DIRS=1
 RUN \
   set -o errexit -o xtrace; \
   if test -n "$GHCUP_VERSION"; then \
-    curl --output ~/.local/bin/ghcup "https://downloads.haskell.org/~ghcup/$GHCUP_VERSION/$( uname -m )-linux-static-ghcup-$GHCUP_VERSION"; \
+    arch=$( uname -m ); \
+    url="https://downloads.haskell.org/~ghcup/$GHCUP_VERSION/$arch-linux-$( if test "$arch" = aarch64; then echo static-; fi )ghcup-$GHCUP_VERSION"; \
+    curl --output ~/.local/bin/ghcup "$url"; \
     chmod +x ~/.local/bin/ghcup; \
     ghcup --version; \
   fi
