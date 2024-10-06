@@ -1,0 +1,39 @@
+name: CI
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+jobs:
+  docker:
+    name: Docker
+    runs-on: ubuntu-latest
+    env:
+      GHC_VERSION: 9.10.1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-qemu-action@v3.2.0
+      - uses: docker/setup-buildx-action@v3.7.1
+      - id: meta
+        uses: docker/metadata-action@v5.5.1
+        with:
+          images: ghcr.io/${{ github.repository }}
+          flavor: latest=false
+          tags: |
+            type=sha,format=long,prefix=${{ env.GHC_VERSION }}-
+            type=raw,value=${{ env.GHC_VERSION }},enable=${{ github.ref == format('refs/heads/{0}', github.event.repository.default_branch) }}
+      - uses: docker/build-push-action@v6.9.0
+        with:
+          build-args: GHC_VERSION=${{ env.GHC_VERSION }}
+          labels: ${{ steps.meta.outputs.labels }}
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+  hadolint:
+    name: Hadolint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hadolint/hadolint-action@v3.1.0
