@@ -24,6 +24,11 @@ jobs:
           tags: |
             type=sha,format=long,prefix=${{ env.GHC_VERSION }}-
             type=raw,value=${{ env.GHC_VERSION }},enable=${{ github.ref == format('refs/heads/{0}', github.event.repository.default_branch) }}
+      - uses: docker/login-action@v3.3.0
+        with:
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
       - uses: docker/build-push-action@v6.9.0
         with:
           build-args: GHC_VERSION=${{ env.GHC_VERSION }}
