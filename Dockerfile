@@ -44,7 +44,7 @@ RUN \
     ghcup --version; \
   fi
 
-ARG GHC_VERSION=9.10.1
+ARG GHC_VERSION=9.12.1
 RUN \
   set -o errexit -o xtrace;\
   if test -n "$GHC_VERSION"; then \
