@@ -1,4 +1,4 @@
-ARG ALPINE_VERSION=3.20.3
+ARG ALPINE_VERSION=3.21.0
 FROM "alpine:$ALPINE_VERSION"
 
 ARG USER_NAME=vscode
@@ -44,7 +44,7 @@ RUN \
     ghcup --version; \
   fi
 
-ARG GHC_VERSION=9.10.1
+ARG GHC_VERSION=9.12.1
 RUN \
   set -o errexit -o xtrace;\
   if test -n "$GHC_VERSION"; then \
