@@ -1,5 +1,4 @@
-ARG ALPINE_VERSION=3.21.0
-FROM "alpine:$ALPINE_VERSION"
+FROM alpine:3.21.2
 
 ARG USER_NAME=vscode
 RUN \
@@ -32,13 +31,13 @@ RUN \
     ~/.local/state/cabal
 ENV PATH="/home/$USER_NAME/.local/bin:$PATH"
 
-ARG GHCUP_VERSION=0.1.30.0
+ARG GHCUP_VERSION=0.1.40.0
 ENV GHCUP_USE_XDG_DIRS=1
 RUN \
   set -o errexit -o xtrace; \
   if test -n "$GHCUP_VERSION"; then \
     arch=$( uname -m ); \
-    url="https://downloads.haskell.org/~ghcup/$GHCUP_VERSION/$arch-linux-$( if test "$arch" = aarch64; then echo static-; fi )ghcup-$GHCUP_VERSION"; \
+    url="https://downloads.haskell.org/ghcup/$GHCUP_VERSION/$arch-linux-ghcup-$GHCUP_VERSION"; \
     curl --output ~/.local/bin/ghcup "$url"; \
     chmod +x ~/.local/bin/ghcup; \
     ghcup --version; \
@@ -53,7 +52,7 @@ RUN \
     ghc --version; \
   fi
 
-ARG CABAL_VERSION=3.12.1.0
+ARG CABAL_VERSION=3.14.1.1
 RUN \
   set -o errexit -o xtrace; \
   if test -n "$CABAL_VERSION"; then \
