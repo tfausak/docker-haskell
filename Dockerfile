@@ -1,6 +1,7 @@
 FROM alpine:3.21.3
 
 ARG USER_NAME=vscode
+# hadolint ignore=DL3018
 RUN \
   set -o errexit -o xtrace; \
   apk add --no-cache \
@@ -41,7 +42,7 @@ RUN \
   chmod +x ~/.local/bin/ghcup; \
   ghcup --version
 
-ARG GHC_VERSION=9.12.1
+ARG GHC_VERSION=9.12.2
 RUN \
   set -o errexit -o xtrace;\
   ghcup install ghc --set "$GHC_VERSION"; \
