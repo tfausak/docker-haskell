@@ -1,6 +1,7 @@
 FROM alpine:3.21.3
 
 ARG USER_NAME=vscode
+# hadolint ignore=DL3018
 RUN \
   set -o errexit -o xtrace; \
   apk add --no-cache \
