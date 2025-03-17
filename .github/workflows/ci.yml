@@ -11,7 +11,7 @@ jobs:
     name: Docker
     runs-on: ubuntu-latest
     env:
-      GHC_VERSION: 9.12.1
+      GHC_VERSION: 9.12.2
     steps:
       - uses: actions/checkout@v4
       - uses: docker/setup-qemu-action@v3.6.0
