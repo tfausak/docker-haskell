@@ -32,7 +32,7 @@ RUN \
     ~/.local/state/cabal
 ENV PATH="/home/$USER_NAME/.local/bin:$PATH"
 
-ARG GHCUP_VERSION=0.1.40.0
+ARG GHCUP_VERSION=0.1.50.1
 ENV GHCUP_USE_XDG_DIRS=1
 RUN \
   set -o errexit -o xtrace; \
