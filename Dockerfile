@@ -49,7 +49,7 @@ RUN \
   ghcup gc --profiling-libs --share-dir; \
   ghc --version
 
-ARG CABAL_VERSION=3.14.1.1
+ARG CABAL_VERSION=3.14.2.0
 RUN \
   set -o errexit -o xtrace; \
   ghcup install cabal --set "$CABAL_VERSION"; \
